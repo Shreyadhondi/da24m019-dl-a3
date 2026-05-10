@@ -89,7 +89,7 @@ def greedy_decode_batch(
     # encode
     _, enc_state = model.encoder(src, src_lens)
 
-    # ✅ adapt encoder state to decoder num_layers (fixes sweep crashes when enc_layers != dec_layers)
+    # adapt encoder state to decoder num_layers (fixes sweep crashes when enc_layers != dec_layers)
     dec_layers = model.decoder.num_layers  # attribute in your Decoder class (should exist)
     dec_state = _adapt_state_num_layers(enc_state, dec_layers)
 
@@ -324,10 +324,10 @@ def main():
     parser.add_argument("--run_name", type=str, default=None, help="Optional W&B run name.")
     parser.add_argument("--use_wandb", action="store_true", help="Enable W&B logging.")
 
-    # ✅ NEW: choose checkpoint filename so global best doesn't get overwritten
+    # NEW: choose checkpoint filename so global best doesn't get overwritten
     parser.add_argument("--ckpt_name", type=str, default="best_vanilla.pt", help="Checkpoint filename inside checkpoints/")
 
-    # ✅ NEW: optionally evaluate on test after training
+    # NEW: optionally evaluate on test after training
     parser.add_argument("--eval_test", action="store_true", help="Evaluate on test set after training finishes.")
 
     # defaults (can be overridden by wandb.config in sweeps)
@@ -372,7 +372,7 @@ def main():
         teacher_forcing = float(getattr(cfg, "teacher_forcing", args.teacher_forcing))
         max_decode_len = int(getattr(cfg, "max_decode_len", args.max_decode_len))
 
-        # ✅ Nice run name (works in sweeps)
+        # Nice run name (works in sweeps)
         if wandb.run is not None:
             run_name = (
                 f"{cell_type}_E{emb_size}_H{hidden_size}"

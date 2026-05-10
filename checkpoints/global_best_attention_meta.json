@@ -1,0 +1,19 @@
+{
+  "best_dev_exact": 0.5755762801337322,
+  "config": {
+    "emb_size": 32,
+    "hidden_size": 256,
+    "cell_type": "lstm",
+    "dropout": 0.1,
+    "enc_layers": 1,
+    "dec_layers": 1,
+    "lang": "te",
+    "lr": 0.001,
+    "batch_size": 64,
+    "teacher_forcing": 1.0,
+    "max_decode_len": 40,
+    "seed": 0
+  },
+  "wandb_run_name": "attention_lstm_E32_H256_do0.1_lr0.001",
+  "wandb_run_id": "7afv8m35"
+}

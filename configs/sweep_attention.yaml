@@ -1,0 +1,35 @@
+program: -m
+command:
+  - python
+  - ${program}
+  - src.training.train_attention
+  - --use_wandb
+  - --lang
+  - te
+  - --ckpt_name
+  - best_attention.pt
+
+method: bayes
+metric:
+  name: dev_exact_match
+  goal: maximize
+
+parameters:
+  cell_type:
+    values: [gru, lstm]
+  emb_size:
+    values: [32, 64]
+  hidden_size:
+    values: [128, 256]
+  dropout:
+    values: [0.1, 0.2, 0.3]
+  lr:
+    values: [0.0005, 0.001]
+  batch_size:
+    values: [64]
+  epochs:
+    values: [10]
+  teacher_forcing:
+    values: [1.0]
+  max_decode_len:
+    values: [40]

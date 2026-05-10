@@ -1,0 +1,39 @@
+program: -m
+command:
+  - ${env}
+  - python
+  - ${program}
+  - src.training.train_vanilla
+  - --use_wandb
+  - ${args}
+
+method: random
+
+metric:
+  name: best_dev_exact_match
+  goal: maximize
+
+parameters:
+  emb_size:
+    values: [16, 32, 64, 128]
+  hidden_size:
+    values: [64, 128, 256]
+  cell_type:
+    values: ["rnn", "gru", "lstm"]
+  enc_layers:
+    values: [1, 2]
+  dec_layers:
+    values: [1, 2]
+  dropout:
+    values: [0.0, 0.2, 0.3]
+  lr:
+    values: [0.001, 0.0005]
+
+  batch_size:
+    values: [64]
+  epochs:
+    values: [10]
+  teacher_forcing:
+    values: [1.0]
+  max_decode_len:
+    values: [40]

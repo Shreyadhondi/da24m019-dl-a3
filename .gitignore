@@ -1,3 +1,15 @@
 # datasets
 /data/
-*.tsv
+
+# ignore dataset tsv files
+Data/**/*.tsv
+
+# keep prediction files
+!predictions_vanilla/*.tsv
+!predictions_attention/*.tsv
+
+# cache files
+__pycache__/
+
+# wandb logs
+wandb/
